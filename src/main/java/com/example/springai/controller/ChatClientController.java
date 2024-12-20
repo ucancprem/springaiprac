@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ChatClientController {
 
-    private ChatGenService chatGenService;
+    private final ChatGenService chatGenService;
 
     public ChatClientController(ChatClient.Builder chatClientBuilder, ChatGenService chatGenService){
         this.chatGenService = chatGenService;
