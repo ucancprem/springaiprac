@@ -9,6 +9,7 @@ import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.converter.BeanOutputConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.util.Map;
 import java.util.Objects;
@@ -30,6 +31,10 @@ public class ChatGenService {
 
     public ChatResponse getAIChatResponse(String userInput){
         return chatClient.prompt().user(userInput).call().chatResponse();
+    }
+
+    public Flux<String> generateStreamingResponse(String userInput){
+        return chatClient.prompt().user(userInput).stream().content();
     }
 
 /*
