@@ -21,17 +21,27 @@ class ChatMemoryGenServiceTest {
     @Autowired
     private ChatMemoryGenService chatMemoryGenService;
 
+
+    private static void printResponseInReadableFormat(String initialResponse) {
+        System.out.println(" ");
+        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println(initialResponse);
+        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println(" ");
+    }
+
     @Test
     public void chatResponseWithChatMemory(){
         String initialResponse = chatMemoryGenService.generateResponseWithChatMemory("Hi, My name is Bob. " +
                 "Can you remember name for further questions.");
-        System.out.println(initialResponse);
+        printResponseInReadableFormat(initialResponse);
         String followUpResponse = chatMemoryGenService.generateResponseWithChatMemory("What is my name?");
-        System.out.println(followUpResponse);
+        printResponseInReadableFormat(followUpResponse);
 
         //assertTrue(initialResponse.contains("Bob"));
         assertTrue(followUpResponse.contains("Bob"), "Chat service now remembers the name/context " +
                 "with the chatMemory advisor");
 
     }
+
 }

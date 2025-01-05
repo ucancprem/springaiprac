@@ -2,6 +2,7 @@ package com.example.springai.service;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ChatMemoryGenService {
 
     public String generateResponseWithChatMemory(String userQuestion){
         return  chatClientWithMemory.prompt()
-                //.advisors(new MessageChatMemoryAdvisor(new InMemoryChatMemory()))
+                .advisors(new SimpleLoggerAdvisor())
                 .user(userQuestion)
                 .call()
                 .content();
